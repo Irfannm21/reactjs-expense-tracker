@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Transaction from './components/Transaction';
 
-function App() {
+const initTansactions = [
+  {
+    "id": "619941539079",
+    "tanggal": new Date("01 Nov 2021 9:30").getTime(),
+    "keterangan": "Gaji bulanan",
+    "nominal": 2500000,
+  },
+  {
+    "id": "749179155708",
+    "tanggal": new Date("23 Nov 2021 10:00").getTime(),
+    "keterangan": "Uang lembur ",
+    "nominal": 750000,
+  },
+  {
+    "id": "568004092688",
+    "tanggal": new Date("24 Sept 2021 10:30").getTime(),
+    "keterangan": "Beli sepatu",
+    "nominal": -150000,
+  }
+];
+
+const App = () => {
+  const [transactions, setTransaction] = useState(initTansactions);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <React.Fragment>
+      <Header />
+      <Transaction transactions={transactions} />
+      <Footer />
+    </React.Fragment>
+  )
 }
 
 export default App;
