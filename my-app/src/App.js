@@ -34,18 +34,30 @@ const App = () => {
     let newTransaction = [
       ...transactions,data
     ];
-
     // atur ulang urutan transacti agar tanggal terkecil di bagian atas
     newTransaction.sort((a,b) => a.tanggal - b.tanggal);
 
     setTransaction(newTransaction);
   }
 
+  const handleHapusTransaction = (e) => {
+    //cari index transaction yang akan dihapus
+    const result = transactions.findIndex(transaction => (transaction.id === e.target.id));
+
+    // copy transction karena fungsi splice akan mengubah array asal
+    const newTransactions = transactions;
+    newTransactions.splice(result,1);
+    setTransaction([...newTransactions]);
+  }
+
   return (
     <React.Fragment>
       <Header />
       <SaldoBox transactions={transactions} />
-      <Transaction transactions={transactions} />
+      <Transaction 
+      transactions={transactions}
+      onHapusTransaction={handleHapusTransaction}
+      />
       <AddTransaction onTambahTransaction={handleFormTambahTransaction} />
       <Footer />
     </React.Fragment>
