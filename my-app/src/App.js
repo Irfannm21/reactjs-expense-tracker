@@ -3,6 +3,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Transaction from './components/Transaction';
 import SaldoBox from './components/SaldoBox';
+import AddTransaction from './components/AddTransaction';
+
 
 const initTansactions = [
   {
@@ -28,11 +30,23 @@ const initTansactions = [
 const App = () => {
   const [transactions, setTransaction] = useState(initTansactions);
 
+  const handleFormTambahTransaction = (data) => {
+    let newTransaction = [
+      ...transactions,data
+    ];
+
+    // atur ulang urutan transacti agar tanggal terkecil di bagian atas
+    newTransaction.sort((a,b) => a.tanggal - b.tanggal);
+
+    setTransaction(newTransaction);
+  }
+
   return (
     <React.Fragment>
       <Header />
       <SaldoBox transactions={transactions} />
       <Transaction transactions={transactions} />
+      <AddTransaction onTambahTransaction={handleFormTambahTransaction} />
       <Footer />
     </React.Fragment>
   )

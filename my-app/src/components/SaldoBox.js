@@ -27,7 +27,7 @@ const SaldoBox = (props) => {
             <div className='container mb-4'>
                 <div className='total-saldo'>
                     <h2 className='display-5 px-5 pb-3'>
-                        Rp. {saldoPemasukan + saldoPengeluaran.toLocaleString('id-ID')}
+                        Rp. {(saldoPemasukan + saldoPengeluaran).toLocaleString('id-ID')}
                     </h2>
                     <div className='d-flex justify-content-center'>
                         <p className='mini-saldo mini-saldo-pemasukan py-2'>
